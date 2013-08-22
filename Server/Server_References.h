@@ -2,6 +2,7 @@
 
 
 #include "../Name_Generator_lib/nameGen.h"
+#include "../Show me image/Send_const.h"
 #include <SDL_net.h>
 #include <vector>
 
@@ -32,7 +33,7 @@ extern void send(
 
 extern	bool	terminated;
 
-const	short	BUFFER_SIZE = 32;
+const	short	BUFFER_SIZE = 1024;
 
 class Client {
 public:

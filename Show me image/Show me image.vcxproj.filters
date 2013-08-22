@@ -49,5 +49,8 @@
     <ClInclude Include="net_refers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Send_const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

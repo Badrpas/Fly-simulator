@@ -57,6 +57,11 @@ void broadcast( char type, const void* data, char len ) {
 	for (unsigned int i = 0; i < clients.size(); i++)
 		send( &clients[i]->socket, type, data, len, true);
 }
+void broadcastExcept ( TCPsocket exceptSock, char type, const void* data, char len ) {
+	for ( unsigned int i = 0; i < clients.size(); i++ )
+		if ( exceptSock != clients[i]->socket )
+			send ( &clients[i]->socket, type, data, len, true );
+}
 
 int main( int argc, char * argv[] ) {
 	

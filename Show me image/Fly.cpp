@@ -14,6 +14,8 @@ Fly::Fly( float x_, float y_ ) {
 	camera_min_zoom = 0.80f;
 	isPlayer		= false;
 	isMainPlayer	= false;
+	float sendPos[3] = { x, y, z };
+	send ( B_NEWPLAYER, sendPos, sizeof(float)*3 );
 }
 
 void	Fly::SetAnimation ( BAnimation * anim ) {
@@ -71,8 +73,10 @@ void	Fly::Render() {
 
 void	Fly::SetSpeed( float speed_ ){
 	speed = speed_;
+	send( B_SETSPEED, &speed, sizeof(float));
 }
 
+// Called only for changing turn direction - NOT for calculation of turn
 void	Fly::Turn ( signed char dir ) {
 	if ( dir != 0 ) {
 		if ( dir > 0 )
@@ -80,7 +84,10 @@ void	Fly::Turn ( signed char dir ) {
 		else
 			turn_dir -=  1 ;
 	}
+	float pos[] = { x, y, (float)turn_dir };
+	send(B_PLAYERPOS, pos, sizeof(float) * 3 );
 }
+
 void	Fly::TurnZ ( signed char dir ) {
 	if ( dir != 0 ) {
 		if ( dir > 0 )

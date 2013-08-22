@@ -26,6 +26,8 @@ bool minimapEnabled = true;
 Fly *fly = NULL;
 Fly *anotherFly = NULL;
 
+std::vector < Fly* > otherFlies;
+
 int mouseX, mouseY;
 int mouseXrel, mouseYrel;
 int mouseXpre = 0, mouseYpre = 0;
@@ -34,9 +36,12 @@ float dt;
 
 SDL_Rect bViewPort;
 
-int main( int argc, char* args[] ) {
+
+int main( int argC, char* argV[] ) {
     bool quit = false;
 	init();
+	if ( argC > 1 )
+		initNet( argC, argV );
 	load_files();
 	float preTime;
 	float curTime;

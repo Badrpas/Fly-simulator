@@ -87,8 +87,8 @@ int main( int argc, char * argv[] ) {
 	SDL_Thread *recvThread;
 	SDL_Thread *decodeThread;
 
-	recvThread		= SDL_CreateThread(recvData,	NULL);
-	decodeThread	= SDL_CreateThread(decodeData,	NULL);
+	recvThread		= SDL_CreateThread( recvData,	NULL );
+	decodeThread	= SDL_CreateThread( decodeData,	NULL );
 
 	char in = 0;
 	for( ;; ) { 

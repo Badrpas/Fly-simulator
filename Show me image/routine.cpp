@@ -1,10 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "refers.h"
 
 void calculate(){
 
 }
-
-
 
 SDL_Surface *load_image( char * filename ) {
     SDL_Surface* loadedImage	= NULL;
@@ -17,30 +16,29 @@ void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination 
     SDL_Rect offset;
     offset.x = x;
     offset.y = y;
-
     SDL_BlitSurface( source, NULL, destination, &offset );
 }
 
 bool initGL() {
-	glClearColor((128.0f / 255.0f), 1.0f, 1.0f, 1.0f);
-	glEnable(GL_DEPTH_TEST);
-	glDepthMask( GL_TRUE );
-	glDepthFunc( GL_LEQUAL );
-	glDepthRange( 1.0f, -1.0f );
-	glClearDepth( 1.0f );
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho( 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 1.0, -1.0 );
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);										// Here is magic
-	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );	// for alpha-blending
+	glClearColor	( (128.0f / 255.0f), 1.0f, 1.0f, 1.0f );
+	glEnable		( GL_DEPTH_TEST );
+	glDepthMask		( GL_TRUE );
+	glDepthFunc		( GL_LEQUAL );
+	glDepthRange	( 1.0f, -1.0f );
+	glClearDepth	( 1.0f );
+	glViewport		( 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT );
+	glMatrixMode	( GL_PROJECTION );
+	glLoadIdentity	();
+	glOrtho			( 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 1.0, -1.0 );
+	glMatrixMode	( GL_MODELVIEW );
+	glLoadIdentity	();
+	glEnable		( GL_TEXTURE_2D );
+	glEnable		( GL_BLEND );								// Here is magic
+	glBlendFunc		( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );	// for alpha-blending
 	FILE * file;
 	file = fopen( "opengl.log", "w" );
     GLenum error = glGetError();
-    if( error != GL_NO_ERROR ) {
+    if ( error != GL_NO_ERROR ) {
         fprintf( file, "Error initializing OpenGL! %s\n", gluErrorString( error ) );
         printf( "Error initializing OpenGL! %s\n", gluErrorString( error ) );
         return false;
@@ -50,6 +48,7 @@ bool initGL() {
 	fclose( file );
     return true;
 }
+bool NETWORK = false;
 
 bool init() {
 	printf ( "Hello\n" );
@@ -148,7 +147,14 @@ bool load_files() {
 
 void clean_up() {
     SDL_FreeSurface( image );
-    SDL_Quit();    
+    SDL_Quit();
+	terminated = true;
+	if (NETWORK) {
+		int status = 0;
+		SDL_WaitThread ( recvThread,   &status );
+		SDL_WaitThread ( decodeThread, &status );
+		SDLNet_TCP_Close(socket);
+	}
 }
 
 float getAngle( float X1, float Y1, float X2, float Y2 ) {

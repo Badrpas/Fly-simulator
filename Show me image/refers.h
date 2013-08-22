@@ -7,9 +7,9 @@
 #include <math.h>
 #include <vector>
 
+#include "net_refers.h"
 #include "Fly.h"
 #include "Animaiton.h"
-#include "net_refers.h"
 
 extern SDL_Rect bViewPort;
 
@@ -18,8 +18,8 @@ extern Fly* anotherFly;
 
 extern BAnimation * anim;
 
-
-extern float dt;
+extern bool		NETWORK;
+extern float	dt;
 
 
 extern int mouseX   , mouseY;

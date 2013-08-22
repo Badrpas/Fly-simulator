@@ -16,7 +16,7 @@ void update(float dt) {
 			if ( readPos >= BUFFER_SIZE )
 				readPos -= BUFFER_SIZE;
 			char msgLength = clients[i]->msg[readPos];
-			if ( msgLength >= clients[i]->recvSize - 2 ) {
+			if ( msgLength <= clients[i]->recvSize - 2 ) {
 				char * data = (char*) malloc( msgLength+1 );
 				for ( Uint16 j = 0; j < msgLength; j++ ) {
 					readPos++;
@@ -31,12 +31,18 @@ void update(float dt) {
 				clients[i]->recvSize -= msgLength+2;
 
 				data[msgLength] = 0;
+				printf("Decoded message(%c:%X)\n", msgType, msgType);
 				switch ( msgType ) {
 					case 'm':
 						printf( "%s: %s\n", clients[i]->address, data );
 					break;
 					case 'b':
-						broadcast( 'm', data, strlen(data) );
+						broadcast( 'm', data, msgLength );
+					break;
+					case B_NEWPLAYER:{
+						float* pos = (float*) data;
+						printf ( "New player %.3f %.3f %.3f \n", pos[0], pos[1], pos[2] );
+						}
 					break;
 				}
 			}

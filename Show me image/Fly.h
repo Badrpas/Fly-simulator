@@ -33,9 +33,10 @@ protected:
 		bool		isPlayer;
 		char		turn_dir;
 		char		z_dir;
-		BAnimation* animation;
+		char		id;
 		BRadians	angle_rad;
 		BRadians	angular_speed;
+		BAnimation* animation;
 };
 
 #endif

@@ -92,6 +92,7 @@
     <ClInclude Include="Fly.h" />
     <ClInclude Include="net_refers.h" />
     <ClInclude Include="refers.h" />
+    <ClInclude Include="Send_const.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
