@@ -39,11 +39,16 @@ void drawKover () {
 	float xkl, yku;
 	float xkr, ykd;
 	xkl = x;
-	xkr = 1.0f - xkl; 
+	xkr = 1.0f - xkl;
 	yku = y;
 	ykd = 1.0f - yku;
-	printf ( "%.3f %.3f\n", x, viewRange*mod*xkl );
 	float _z = -1.0f;
+
+	bViewPort.x = (x - viewRange*mod*xkl) * SCREEN_WIDTH;
+	bViewPort.y = (y - viewRange*    yku) * SCREEN_HEIGHT;
+	bViewPort.w = mod * viewRange * SCREEN_WIDTH;
+	bViewPort.h =       viewRange * SCREEN_HEIGHT;
+
 	glColor4f( 1.0, 1.0, 1.0, 1.0 );
     glBegin( GL_QUADS );											
 		glTexCoord2f(x - viewRange*mod*xkl, y - viewRange*yku );	glVertex3f( 0			, 0				, _z);

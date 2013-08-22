@@ -19,7 +19,7 @@ void BAnimation::Update ( float dt ) {
 
 void BAnimation::Render (	float x,	float y, 
 							float w,	float h,
-							float r, 
+							BRadians r, 
 							float dx,	float dy) {
 	if ( frames.size() > 0 ) {
 		float _w, _h;

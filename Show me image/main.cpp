@@ -32,6 +32,8 @@ int mouseXpre = 0, mouseYpre = 0;
 
 float dt;
 
+SDL_Rect bViewPort;
+
 int main( int argc, char* args[] ) {
     bool quit = false;
 	init();
@@ -40,13 +42,13 @@ int main( int argc, char* args[] ) {
 	float curTime;
 	preTime = SDL_GetTicks();
 	
-	fly  = new Fly( 550.0f, 324.0f );
-	anim = new BAnimation ( 64, 64, 0.03f );
+	fly  = new Fly			( 550.0f, 324.0f );
+	anim = new BAnimation	( 64, 64, 0.03f );
 	anim->AddFrame ( glFlyTexture );
 	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png", GL_RGBA, GL_LINEAR ) );
 	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly2.png" ) );
 	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png" ) );
-	fly->SetAnimation ( anim );
+	fly->SetAnimation		( anim );
 	fly->SetMainPlayerState ( true );
 
 	anotherFly = new Fly ( 300.0f, 100.0f );

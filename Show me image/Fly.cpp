@@ -52,7 +52,11 @@ void	Fly::Render() {
 		mod = 0;
 		float xf, yf;
 		fly->GetXY ( xf, yf );
-		_x =   SCREEN_WIDTH * (x / SCREEN_WIDTH) * fly->GetZ();
+		float zoom = 1 / fly->GetZ() ;
+		
+		_x = ( (x - bViewPort.x)/bViewPort.w ) * SCREEN_WIDTH;
+		_y = ( (y - bViewPort.y)/bViewPort.h ) * SCREEN_HEIGHT;
+
 	}
 	
 	_dx = _w / 2.0f;

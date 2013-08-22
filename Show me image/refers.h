@@ -9,8 +9,7 @@
 #include "Fly.h"
 #include "Animaiton.h"
 
-
-
+extern SDL_Rect bViewPort;
 
 extern Fly* fly;
 extern Fly* anotherFly;
