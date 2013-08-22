@@ -15,6 +15,7 @@ extern SDL_Rect bViewPort;
 
 extern Fly* fly;
 extern Fly* anotherFly;
+extern std::vector < Fly* > otherFlies;
 
 extern BAnimation * anim;
 

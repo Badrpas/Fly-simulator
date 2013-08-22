@@ -77,15 +77,15 @@ bool init() {
 		SCREEN_BPP, FLAGS );
 	initGL();
 	
-	printf( "Vendor: %s\n", glGetString( GL_VENDOR ) );
-	printf( "Renderer: %s\n", glGetString( GL_RENDERER ) );
+	printf( "Vendor: %s\n",		glGetString( GL_VENDOR ) );
+	printf( "Renderer: %s\n",	glGetString( GL_RENDERER ) );
 	printf( "GL version: %s\n", glGetString( GL_VERSION ) );
 	printf( "SL version: %s\n", glGetString( GL_SHADING_LANGUAGE_VERSION ) );
 
     if( screen == NULL ) {
         return false;
     }
-	SDL_WM_SetCaption( "Event test", NULL );
+	SDL_WM_SetCaption( "Fly sandbox", NULL );
     return true;
 }
 

@@ -65,6 +65,7 @@ void broadcastExcept ( TCPsocket exceptSock, char type, const void* data, char l
 
 int main( int argc, char * argv[] ) {
 	
+	IDCounter = 0;
 	unsigned char consoleWidth = 60;
 	for (Uint8 k = 0; k < 10; k++) {
 		const char * newName = GenerateName();

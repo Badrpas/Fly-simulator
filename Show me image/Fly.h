@@ -6,6 +6,7 @@
 class Fly {
 public:
 					Fly					( float x_, float y_ );
+					Fly					( float* data );
 		void		Update				();
 		void		Render				();
 		void		Turn				( signed char dir );
@@ -19,8 +20,13 @@ public:
 		void		SetPlayerState		( bool state );
 		void		SetMainPlayerState	( bool state );
 		void		SetAnimation		( BAnimation * anim );
-		void		SetPosition			( float x_, float y_, BRadians angle_ );
+		void		SetPosition			( float x_, float y_, BRadians angle_, char turn_dir_ );
+		void		SetPositionZ		( float x_, float y_, float z_, char z_dir_ );
 		void		SetZ				( float z_ );
+		void		SetID				( unsigned int id_ );
+		Uint		GetID				();
+		void		SendNewPlayer		();
+		void		SendStateToID		( unsigned int id_ );
 
 protected:
 		void		Move				();

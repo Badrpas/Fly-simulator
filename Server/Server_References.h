@@ -6,6 +6,8 @@
 #include <SDL_net.h>
 #include <vector>
 
+extern void broadcast( char type, const void* data, char len );
+extern void broadcastExcept( TCPsocket exceptSock, char type, const void* data, char len );
 
 extern Uint32 convFromIP( Uint8 a, Uint8 b, Uint8 c, Uint8 d );
 extern const char * getStringIP( Uint32 ip );
@@ -35,6 +37,8 @@ extern	bool	terminated;
 
 const	short	BUFFER_SIZE = 1024;
 
+extern unsigned int IDCounter;
+
 class Client {
 public:
 	Client( TCPsocket* socket_ );
@@ -43,7 +47,7 @@ public:
 	char*		address;
 	int			startPos;
 	int			recvSize;
-	int			GUID;
+	unsigned int ID;
 	SDL_mutex*	mutex;
 
 	void		recvData();

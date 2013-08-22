@@ -9,4 +9,6 @@
 //	turn
 #define B_PLAYERTURN	0x43
 #define B_PLAYERTURNZ	0x44
-#define B_
+#define B_NEWPLAYERID	0x45
+#define B_FORNEWBIE		0x46
+#define B_PLAYERSTATE	0x47

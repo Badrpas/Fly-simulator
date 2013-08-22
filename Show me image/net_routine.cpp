@@ -136,6 +136,13 @@ int recvData( void* ) {
 	return 0;
 }
 
+Fly* getFlyByID ( Uint8 id_){
+	for (unsigned int i = 0; i < otherFlies.size(); i++)
+		if ( id_ == otherFlies.at(i)->GetID() ) 
+			return otherFlies.at(i);
+	return NULL;
+}
+
 int decodeData ( void* ) {
 	char messageType	= 0;
 	char messageLength	= 0;
@@ -157,22 +164,57 @@ int decodeData ( void* ) {
 					messageData[i] = 0;
 					recvSize -= messageLength+2;
 					startPos += messageLength+2;
+					void* data = messageData;
 					if ( startPos >= BUFFER_SIZE )
 						startPos -= BUFFER_SIZE;
 					switch ( messageType ) {
 						case 'm':
 							printf( "Server: %s\n", messageData );
-						break;
+							break;
 						case 'n':
 							printf( "Server set your name to \"%s\"\n", messageData );
-						break;
+							break;
+						case B_NEWPLAYER:{
+							float* pos = (float*) data;
+							printf( "New player (%.3f; %.3f) ID:%i \n", pos[0], pos[1], (int)pos[3] );
+							otherFlies.push_back( new Fly( pos[0], pos[1] ) );
+							otherFlies.at( otherFlies.size()-1 )->SetID( (unsigned int) pos[3] );
+							fly->SendStateToID ( (unsigned int) pos[3] );
+							break;
+							}
+						case B_NEWPLAYERID:
+							fly->SetID( (unsigned) messageData[0] );
+							printf( "My ID: %i\n", fly->GetID() );
+							break;
+						case B_FORNEWBIE:{
+							float* pos = (float*) data;
+							printf( "Existing player at (%.3f; %.3f) ID:%i \n", pos[0], pos[1], (Uint8)pos[7] );
+							otherFlies.push_back( new Fly( pos ) );
+							break;
+							}
+						case B_PLAYERTURN:{
+							float * dat = (float*) data;
+							printf( "Other Fly turned at %.3f %.3f\n", dat[0], dat[1]);
+							Fly* who = getFlyByID( (Uint8) ( dat[4] ) );
+							if ( who != NULL ) {
+								who->SetPosition(dat[0], dat[1], dat[2], dat[3]);
+							}
+							break;
+						}
+						case B_PLAYERTURNZ:{
+							float * dat = (float*) data;
+							printf( "Other Fly turned Z(%i) at %.3f %.3f\n", dat[3], dat[0], dat[1] );
+							Fly* who = getFlyByID( (Uint8) ( dat[4] ) );
+							if ( who != NULL ) {
+								who->SetPositionZ(dat[0], dat[1], dat[2], dat[3]);
+							}
+							break;
+						}
 					}
 				}
 				unlockMutex( mutex );
-
 			} else
 				SDL_Delay( 1 );
-		
 	}
 	return 0;	
 }

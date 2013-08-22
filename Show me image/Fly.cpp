@@ -14,8 +14,47 @@ Fly::Fly( float x_, float y_ ) {
 	camera_min_zoom = 0.80f;
 	isPlayer		= false;
 	isMainPlayer	= false;
+}
+Fly::Fly( float* data ){
+	x			= data[0]; 
+	y			= data[1];
+	z			= data[2];
+	angle_rad	= data[3];
+	turn_dir	= data[4];
+	z_dir		= data[5];
+	speed		= data[6];
+	id			= data[7];
+	animation	= NULL;
+	camera_max_zoom = 0.07f;
+	camera_min_zoom = 0.80f;
+	isPlayer		= false;
+	isMainPlayer	= false;
+	angular_speed	= M_PI_2 * 1.5f;
+}
+
+void	Fly::SendNewPlayer() {
 	float sendPos[3] = { x, y, z };
 	send ( B_NEWPLAYER, sendPos, sizeof(float)*3 );
+}
+void	Fly::SendStateToID ( unsigned int id_ ) {
+	Uint8 len = sizeof(float)*9;
+	float* data = (float*) malloc ( len );
+	data[0] = x; 
+	data[1] = y;
+	data[2] = z;
+	data[3] = angle_rad;
+	data[4] = (float)turn_dir;
+	data[5] = (float)z_dir;
+	data[6] = speed;
+	data[7] = (float)id;	// source
+	data[8] = (float)id_;	// destination
+	send( B_FORNEWBIE, data, len );
+}
+void	Fly::SetID ( unsigned int id_ ) {
+	id = id_;
+}
+Uint	Fly::GetID () {
+	return id;
 }
 
 void	Fly::SetAnimation ( BAnimation * anim ) {
@@ -84,8 +123,8 @@ void	Fly::Turn ( signed char dir ) {
 		else
 			turn_dir -=  1 ;
 	}
-	float pos[] = { x, y, (float)turn_dir };
-	send(B_PLAYERPOS, pos, sizeof(float) * 3 );
+	float pos[] = { x, y, angle_rad, (float)turn_dir, (float)id };
+	send( B_PLAYERTURN, pos, sizeof(float) * 5 );
 }
 
 void	Fly::TurnZ ( signed char dir ) {
@@ -95,6 +134,8 @@ void	Fly::TurnZ ( signed char dir ) {
 		else
 			z_dir -=  1 ;
 	}
+	float pos[] = { x, y, z, (float)z_dir, (float)id };
+	send( B_PLAYERTURNZ, pos, sizeof(float) * 5 );
 }
 
 void	Fly::Update() {
@@ -121,9 +162,15 @@ float	Fly::GetZ  ()						{ return z; }
 void	Fly::GetXY ( float &_x, float &_y ) { _x = x; _y = y; }
 
 
-void	Fly::SetPosition ( float x_, float y_, BRadians angle_ ) {
+void	Fly::SetPosition ( float x_, float y_, BRadians angle_, char turn_dir_ ) {
 	x = x_;		y = y_;
 	angle_rad = angle_;
+	turn_dir = turn_dir_;
+}
+void	Fly::SetPositionZ ( float x_, float y_, float z_, char z_dir_ ) {
+	x = x_;		y = y_;
+	z = z_;
+	z_dir = z_dir_;
 }
 
 

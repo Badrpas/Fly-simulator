@@ -2,10 +2,12 @@
 
 extern const char * getStringAddress(IPaddress ip);
 
+unsigned int IDCounter;
+
 Client::Client(TCPsocket * socket_){
 	socket = *socket_;
 	msg = (char*) malloc(BUFFER_SIZE);
-	GUID = 0;
+	ID = ++IDCounter;
 	startPos = 0;
 	recvSize = 0;
 	mutex = SDL_CreateMutex();

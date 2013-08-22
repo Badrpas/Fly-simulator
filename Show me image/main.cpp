@@ -55,13 +55,8 @@ int main( int argC, char* argV[] ) {
 	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png" ) );
 	fly->SetAnimation		( anim );
 	fly->SetMainPlayerState ( true );
-
-	anotherFly = new Fly ( 300.0f, 100.0f );
-	anotherFly->SetAnimation	( anim );
-	anotherFly->SetPlayerState	( false );
-	anotherFly->SetPosition		( 1000.0f, 230.0f, 0.0f );
-	anotherFly->SetSpeed		( 0.0f );
-
+	fly->SendNewPlayer		();
+	
 
 	while ( !quit ) {
 		while ( SDL_PollEvent( &event ) ) {
