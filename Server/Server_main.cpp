@@ -47,7 +47,7 @@ void send(	TCPsocket*	sock,
 			bool		outputAllowed ) {
 	IPaddress * clientIP = SDLNet_TCP_GetPeerAddress(*sock);
 	if (outputAllowed) 
-		printf("Sending -> %s : (%c) \"%s\"\n", getStringAddress(*clientIP), type, data);
+		printf("Sending -> %s : (%c:%X) \"%s\"\n", getStringAddress(*clientIP), type, type, data);
 	SDLNet_TCP_Send(*sock, &type,1);
 	SDLNet_TCP_Send(*sock, &len, 1);
 	SDLNet_TCP_Send(*sock, data, len);

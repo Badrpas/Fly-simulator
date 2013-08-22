@@ -57,12 +57,10 @@ extern GLuint loadTexture (	char * file,
 
 extern double B_ALPHA_VALUE;
 
-extern void draw(GLuint texture, 
-		float x, float y, 
-		float w, float h, 
-		float r = 0, 
-		float dx = 0, 
-		float dy = 0);
+extern void draw (	GLuint texture, 
+					float x, float y, 
+					float w, float h, float r = 0, 
+					float dx = 0,	  float dy = 0 );
 extern void drawKover();
 
 extern void apply_surface( int x, int y, 

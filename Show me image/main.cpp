@@ -21,7 +21,7 @@ Uint32 FLAGS;
 
 SDL_Event event;
 
-bool minimapEnabled = true;
+bool minimapEnabled = false;
 
 Fly *fly = NULL;
 Fly *anotherFly = NULL;
