@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_opengl.h>
+#include <SDL_net.h>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -8,6 +9,7 @@
 
 #include "Fly.h"
 #include "Animaiton.h"
+#include "net_refers.h"
 
 extern SDL_Rect bViewPort;
 

@@ -32,6 +32,9 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="net_routine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="refers.h">
@@ -41,6 +44,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Animaiton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net_refers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

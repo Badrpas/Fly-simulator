@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Name_Generator", "Name_Gene
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game_Data", "Game_Data\Game_Data.vcxproj", "{7C428E2F-2573-4C0E-A21B-7DA441FBC027}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Show me image", "Show me image\Show me image.vcxproj", "{95B74A83-CA66-476E-B832-E70A7991B2B2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fly", "Show me image\Show me image.vcxproj", "{95B74A83-CA66-476E-B832-E70A7991B2B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
