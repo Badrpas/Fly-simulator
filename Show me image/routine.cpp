@@ -185,7 +185,7 @@ void  getCoordsMove(	float &x,		float &y,
 						float angle,	float length, 
 						SDL_Rect bounds					) {
 	float _x = x, _y = y;
-	x -= length*sin(angle-M_PI) * 1.5;
+	x -= length*sin(angle-M_PI) * 1; // SCREEN_WIDTH/SCREEN_HEIGHT
 	if ( x < bounds.x || x > bounds.x + bounds.w ) {
 		x = _x;
 	}

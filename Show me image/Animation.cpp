@@ -33,6 +33,8 @@ void BAnimation::Render (	float x,	float y,
 		} else {
 			_h = h;
 		}
+		_h = h;
+		_w = w;
 		draw ( frames.at( frameNumber ), x, y, _w, _h, r, dx, dy );
 	}
 }

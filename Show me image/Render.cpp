@@ -7,5 +7,9 @@ void render() {
 	//anim->Render ( 100, 100 );
 	if (fly)
 		fly->Render();
+	if ( anotherFly )
+		 anotherFly->Render();
     SDL_GL_SwapBuffers();
 }
+
+

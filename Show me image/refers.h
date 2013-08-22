@@ -10,7 +10,11 @@
 #include "Animaiton.h"
 
 
-extern Fly * fly;
+
+
+extern Fly* fly;
+extern Fly* anotherFly;
+
 extern BAnimation * anim;
 
 
@@ -48,6 +52,8 @@ extern GLuint loadTexture (	char * file,
 							GLint glFormat = GL_RGBA, 
 							GLint filter   = GL_LINEAR, 
 							GLint wrapping = GL_CLAMP 	);
+
+extern double B_ALPHA_VALUE;
 
 extern void draw(GLuint texture, 
 		float x, float y, 

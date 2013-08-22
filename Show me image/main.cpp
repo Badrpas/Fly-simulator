@@ -20,9 +20,11 @@ BAnimation *anim;
 Uint32 FLAGS;
 
 SDL_Event event;
-bool minimapEnabled = true;
-Fly *fly = NULL;
 
+bool minimapEnabled = true;
+
+Fly *fly = NULL;
+Fly *anotherFly = NULL;
 
 int mouseX, mouseY;
 int mouseXrel, mouseYrel;
@@ -38,16 +40,23 @@ int main( int argc, char* args[] ) {
 	float curTime;
 	preTime = SDL_GetTicks();
 	
-	fly = new Fly( 550.0f, 324.0f );
+	fly  = new Fly( 550.0f, 324.0f );
 	anim = new BAnimation ( 64, 64, 0.03f );
 	anim->AddFrame ( glFlyTexture );
-	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png", GL_RGBA, GL_NEAREST ) );
+	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png", GL_RGBA, GL_LINEAR ) );
 	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly2.png" ) );
 	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png" ) );
 	fly->SetAnimation ( anim );
+	fly->SetMainPlayerState ( true );
+
+	anotherFly = new Fly ( 300.0f, 100.0f );
+	anotherFly->SetAnimation	( anim );
+	anotherFly->SetPlayerState	( false );
+	anotherFly->SetPosition		( 1000.0f, 230.0f, 0.0f );
+	anotherFly->SetSpeed		( 0.0f );
 
 
-	while ( quit == false ) {
+	while ( !quit ) {
 		while ( SDL_PollEvent( &event ) ) {
 			if ( event.type == SDL_QUIT ) {
                 quit = true;
@@ -82,9 +91,21 @@ int main( int argc, char* args[] ) {
 				if ( key == SDLK_m )
 					minimapEnabled = ! minimapEnabled;
 
+				
+				if ( key == SDLK_a )
+					anotherFly->TurnZ	( -1 );
+				if ( key == SDLK_s )
+					anotherFly->TurnZ	( +1 );
+
 
 			} else if ( event.type == SDL_KEYUP ) {
-				SDLKey key = event.key.keysym.sym;		
+				SDLKey key = event.key.keysym.sym;
+				
+				if ( key == SDLK_a )
+					anotherFly->TurnZ	( +1 );
+				if ( key == SDLK_s )
+					anotherFly->TurnZ	( -1 );
+
 				if ( key == SDLK_RIGHT )
 					fly->Turn ( -1 );
 				if ( key == SDLK_LEFT  )
@@ -93,7 +114,7 @@ int main( int argc, char* args[] ) {
 					fly->TurnZ ( +1 );
 				if ( key == SDLK_DOWN )
 					fly->TurnZ ( -1 );
-			}				
+			}
 		}
 
 		curTime = SDL_GetTicks();

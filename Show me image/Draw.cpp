@@ -1,5 +1,8 @@
 #include "refers.h"
 
+
+double B_ALPHA_VALUE = 1.0;
+
 void draw(	GLuint texture, 
 			float x, float y, 
 			float w, float h, 
@@ -11,6 +14,7 @@ void draw(	GLuint texture,
 	glTranslatef(x, y, 0);
 	glRotatef(r, 0, 0, 1);
 	glTranslatef(-x, -y, 0);
+	glColor4f(1.0, 1.0, 1.0, B_ALPHA_VALUE);
     glBegin( GL_QUADS );			
 		glTexCoord2f(0   ,0   );	glVertex3f( x - dx		, y - dy		, _z);
 		glTexCoord2f(1.0f,0   );	glVertex3f( x - dx + w	, y - dy		, _z);
@@ -40,7 +44,7 @@ void drawKover () {
 	ykd = 1.0f - yku;
 	printf ( "%.3f %.3f\n", x, viewRange*mod*xkl );
 	float _z = -1.0f;
-	//glTranslatef( 0, 0, _z );
+	glColor4f( 1.0, 1.0, 1.0, 1.0 );
     glBegin( GL_QUADS );											
 		glTexCoord2f(x - viewRange*mod*xkl, y - viewRange*yku );	glVertex3f( 0			, 0				, _z);
 		glTexCoord2f(x + viewRange*mod*xkr, y - viewRange*yku );	glVertex3f( SCREEN_WIDTH, 0				, _z);
