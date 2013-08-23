@@ -37,7 +37,7 @@ extern	bool	terminated;
 
 const	short	BUFFER_SIZE = 1024;
 
-extern unsigned int IDCounter;
+extern unsigned char IDCounter;
 
 class Client {
 public:

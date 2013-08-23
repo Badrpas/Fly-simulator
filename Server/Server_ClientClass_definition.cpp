@@ -2,7 +2,7 @@
 
 extern const char * getStringAddress(IPaddress ip);
 
-unsigned int IDCounter;
+unsigned char IDCounter;
 
 Client::Client(TCPsocket * socket_){
 	socket = *socket_;

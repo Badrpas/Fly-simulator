@@ -139,8 +139,8 @@ GLuint loadTexture (char * file,
 bool load_files() {
     image	= load_image( "images/hello.png" );
 	flyImg	= load_image( "images/fly.png" );
-	kover	= load_image( "images/KOVER.png" );
-	convToGLTex ( kover, glKoverTexture, GL_RGBA, GL_LINEAR, GL_MIRRORED_REPEAT );
+	kover	= load_image( "images/KOVER.jpg" );
+	convToGLTex ( kover, glKoverTexture, GL_RGB, GL_LINEAR, GL_MIRRORED_REPEAT );
 	convToGLTex ( flyImg, glFlyTexture , GL_RGBA );
 	return true;
 }

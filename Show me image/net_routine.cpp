@@ -59,7 +59,7 @@ void initNet ( int argc, char* argv[] ) {
 	} else {
 		NETWORK = true;
 		printf("ok.\n");
-		SDLNet_TCP_AddSocket(socketSet, socket);
+		SDLNet_TCP_AddSocket( socketSet, socket );
 		msg = (char*) malloc(BUFFER_SIZE+1);
 		msg[BUFFER_SIZE+1] = 0;
 		recvThread		= SDL_CreateThread( recvData,	NULL );
@@ -97,9 +97,11 @@ const char * getStringAddress( IPaddress ip ) {
 }
 
 void send ( char type, const void* data, char len ) {
-	SDLNet_TCP_Send(socket, &type,1  );
-	SDLNet_TCP_Send(socket, &len, 1  );
-	SDLNet_TCP_Send(socket, data, len);
+	if ( NETWORK ) {
+		SDLNet_TCP_Send(socket, &type,1  );
+		SDLNet_TCP_Send(socket, &len, 1  );
+		SDLNet_TCP_Send(socket, data, len);
+	}
 }
 
 
@@ -142,6 +144,12 @@ Fly* getFlyByID ( Uint8 id_){
 			return otherFlies.at(i);
 	return NULL;
 }
+int getFlyByIDi ( Uint8 id_){
+	for (unsigned int i = 0; i < otherFlies.size(); i++)
+		if ( id_ == otherFlies[i]->GetID() ) 
+			return i;
+	return NULL;
+}
 
 int decodeData ( void* ) {
 	char messageType	= 0;
@@ -167,6 +175,13 @@ int decodeData ( void* ) {
 					void* data = messageData;
 					if ( startPos >= BUFFER_SIZE )
 						startPos -= BUFFER_SIZE;
+					printf ( "Recieved new message [\'%c\' 0x%X] len=%i\n", messageType, messageType, messageLength );
+					for ( Uint8 letter = 0; letter < messageLength; letter++ ) {
+						if ( ( letter )% 24 == 0 && letter != 0 )
+							printf("\n");
+						printf( "%02X ", (unsigned char) messageData[letter] );
+					}
+					printf( "\n" );
 					switch ( messageType ) {
 						case 'm':
 							printf( "Server: %s\n", messageData );
@@ -208,6 +223,13 @@ int decodeData ( void* ) {
 							if ( who != NULL ) {
 								who->SetPositionZ(dat[0], dat[1], dat[2], dat[3]);
 							}
+							break;
+						}
+						case B_DISCONNECT:{
+							int dc = getFlyByIDi((unsigned char)data);
+							char pos = otherFlies.size();
+							std::swap( otherFlies[dc], otherFlies.back() );
+							otherFlies.resize( pos - 1 );
 							break;
 						}
 					}

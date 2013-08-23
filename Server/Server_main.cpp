@@ -45,12 +45,14 @@ void send(	TCPsocket*	sock,
 	const	void*		data, 
 			char		len, 
 			bool		outputAllowed ) {
-	IPaddress * clientIP = SDLNet_TCP_GetPeerAddress(*sock);
-	if (outputAllowed) 
-		printf("Sending -> %s : (%c:%X) \"%s\"\n", getStringAddress(*clientIP), type, type, data);
-	SDLNet_TCP_Send(*sock, &type,1);
-	SDLNet_TCP_Send(*sock, &len, 1);
-	SDLNet_TCP_Send(*sock, data, len);
+	if ( *sock != NULL ) {
+		IPaddress * clientIP = SDLNet_TCP_GetPeerAddress(*sock);
+		if (outputAllowed) 
+			printf("Sending -> %s : (%c:%X) \"%s\"\n", getStringAddress(*clientIP), type, type, data);
+		SDLNet_TCP_Send(*sock, &type,1);
+		SDLNet_TCP_Send(*sock, &len, 1);
+		SDLNet_TCP_Send(*sock, data, len);
+	}
 }
 
 void broadcast( char type, const void* data, char len ) {
@@ -105,6 +107,7 @@ int main( int argc, char * argv[] ) {
 	SDLNet_TCP_AddSocket( socketSet, socket );
 
 	printf("Waiting for clients...\n");
+
 	acceptClientThread = SDL_CreateThread(clientNetLoop, NULL);
 	
 	updateLoopThread = SDL_CreateThread(updateLoop, NULL);
@@ -126,7 +129,7 @@ int main( int argc, char * argv[] ) {
 		}
 		if (instr == 'w') {
 			printf("startPos: %i; recvSize: %i\n", clients[0]->startPos, clients[0]->recvSize);
-			for (unsigned char i = 0; i < BUFFER_SIZE; i++) {
+			for (unsigned char i = 0; i < clients[i]->recvSize; i++) {
 				if (	clients[0]->msg[i] != '\n' 
 					&&	clients[0]->msg[i] != 10)
 					printf("%3i\'%c\'; ", (unsigned char)clients[0]->msg[i], (unsigned char)clients[0]->msg[i]);

@@ -13,6 +13,8 @@
 
 extern SDL_Rect bViewPort;
 
+#define BOUNDS_SIZE 32.0
+
 extern Fly* fly;
 extern Fly* anotherFly;
 extern std::vector < Fly* > otherFlies;

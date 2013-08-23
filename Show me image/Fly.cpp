@@ -76,7 +76,7 @@ void	Fly::Render() {
 		_h = W; _w = H;
 		_x = x;	_y = y;
 	} else {
-		float amplitude = ( camera_min_zoom - camera_max_zoom ) / 6.0f ;
+		float amplitude = ( camera_min_zoom - camera_max_zoom ) / 4.3f ;
 		float mod = 1.0f + length / amplitude;
 		
 		if ( mod < 0 )
@@ -151,10 +151,10 @@ void	Fly::Update() {
 
 void	Fly::Move  () {
 	SDL_Rect rect;
-	rect.x = 0;
-	rect.y = 0;
-	rect.w = SCREEN_WIDTH;
-	rect.h = SCREEN_HEIGHT;
+	rect.x = BOUNDS_SIZE;
+	rect.y = BOUNDS_SIZE;
+	rect.w = SCREEN_WIDTH  - BOUNDS_SIZE * 2;
+	rect.h = SCREEN_HEIGHT - BOUNDS_SIZE * 2;
 	getCoordsMove( x, y, angle_rad, speed*dt, rect);
 }
 

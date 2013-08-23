@@ -24,21 +24,25 @@ int clientNetLoop(void *) {
 			char*	nameMsg	 = (char*) GenerateName();
 			send( &newSocket, 'n', nameMsg, strlen(nameMsg) );
 		}
-
-		for (unsigned int i = 0; i < clients.size(); i++) {
+		
+		for ( unsigned int i = 0; i < clients.size(); i++ ) {
 			int clientSocketActivity = SDLNet_SocketReady( clients[i]->socket );
 			if (clientSocketActivity != 0 ) {
 				char * buffer = (char*) malloc( BUFFER_SIZE - clients[i]->recvSize );
-				Uint32 recvByteCount = SDLNet_TCP_Recv( 
-											clients[i]->socket, 
-											buffer, 
-											BUFFER_SIZE - clients[i]->recvSize );
-                if ( recvByteCount <= 0 ) {
+				Sint32 recvByteCount = SDLNet_TCP_Recv( clients[i]->socket, buffer, 
+													BUFFER_SIZE - clients[i]->recvSize );
+				//printf( "%i\n", recvByteCount );
+                if ( recvByteCount <= 0 ) {					
 					printf( "%s disconnected\n", clients[i]->address );
+					unsigned char id = clients[i]->ID;
 					SDLNet_TCP_DelSocket( socketSet, clients[i]->socket );
 					SDLNet_TCP_Close( clients[i]->socket );
                     clients[i]->socket = NULL;
+					//std::swap( clients.back(), clients[i] );
+					//clients.resize( clients.size() - 1 );
                     count--;
+					//i--;
+					broadcast( B_DISCONNECT, &id, 1 );
                 } else {
 					lockMutex( clients[i]->mutex );
 					int writePos = clients[i]->startPos + clients[i]->recvSize;

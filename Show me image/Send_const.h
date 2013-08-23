@@ -16,6 +16,8 @@
 #define B_FORNEWBIE		0x46
 #define B_PLAYERSTATE	0x47
 
+//	on dc of someone
+#define B_DISCONNECT	0x5F
 //	Send text message
 #define B_MESSAGE		0x6D
 //	Send client name
