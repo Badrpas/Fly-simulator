@@ -12,7 +12,7 @@ extern char*			msg;
 extern int				recvSize;
 extern int				startPos;
 extern int				endPos;
-extern short	const	BUFFER_SIZE;
+extern short const		BUFFER_SIZE;
 extern Uint32			convFromIP	( int a, int b, int c, int d );
 extern Uint32			convFromIP	( char * address );
 extern const char*		getStringIP	( Uint32 ip );

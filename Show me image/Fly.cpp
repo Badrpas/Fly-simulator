@@ -30,6 +30,7 @@ Fly::Fly( float* data ){
 	isPlayer		= false;
 	isMainPlayer	= false;
 	angular_speed	= M_PI_2 * 1.5f;
+	SetAnimation ( anim );
 }
 
 void	Fly::SendNewPlayer() {
@@ -76,7 +77,7 @@ void	Fly::Render() {
 		_h = W; _w = H;
 		_x = x;	_y = y;
 	} else {
-		float amplitude = ( camera_min_zoom - camera_max_zoom ) / 4.3f ;
+		float amplitude = ( camera_min_zoom - camera_max_zoom ) / 3.6f ;
 		float mod = 1.0f + length / amplitude;
 		
 		if ( mod < 0 )

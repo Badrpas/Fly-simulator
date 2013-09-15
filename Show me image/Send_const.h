@@ -14,6 +14,7 @@
 #define B_NEWPLAYERID	0x45
 //	sending existing players data
 #define B_FORNEWBIE		0x46
+//	Неюзабельная хрень
 #define B_PLAYERSTATE	0x47
 
 //	on dc of someone

@@ -16,8 +16,6 @@ SDL_Thread *acceptClientThread;
 SDL_Thread *updateLoopThread;
 SDL_Thread *renderLoopThread;
 
-//const short BUFFER_SIZE = 1024;
-
 bool terminated = false;
 
 char msg[100] = "helloWorld!1234567890\0";
