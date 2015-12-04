@@ -1,1 +1,0 @@
-Some researches in SDL.
