@@ -15,7 +15,7 @@ So you can grab your friends and fly your flies together.
 
 You can also press `m` to see relative view position.
 
-But you better not press other buttons because some of them are crashing client
+But you better not press other buttons because some of them are crashing client :neutral_face:
 
 ####Warning for explorers
 Do not expect to see a well written code here.
