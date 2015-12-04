@@ -17,5 +17,5 @@ You can also press `m` to see relative view position.
 
 But you better not press other buttons because some of them are crashing client
 
-####Warning
+####Warning for explorers
 Do not expect to see a well written code here.
