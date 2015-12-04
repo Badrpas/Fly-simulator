@@ -1,1 +1,1 @@
-fly.exe your.server.ip.here andPort
+fly.exe your.server.ip.here 3879
