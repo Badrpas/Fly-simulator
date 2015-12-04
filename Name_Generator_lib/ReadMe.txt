@@ -1,1 +1,1 @@
-Test library and first library ever ^___^
+Experimental library and first library ever ^___^
