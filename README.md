@@ -1,5 +1,6 @@
 # Fly simulator
 
+[![Build Status](https://travis-ci.com/Badrpas/Fly-simulator.svg?branch=master)](https://travis-ci.com/Badrpas/Fly-simulator)
 [![BCH compliance](https://bettercodehub.com/edge/badge/Badrpas/Fly-simulator?branch=master)](https://bettercodehub.com/)
 
 Magnificient application that allows you to control a perfectly drawed-in-paint fly that flies above a carpet.
