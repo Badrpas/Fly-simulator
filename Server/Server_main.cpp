@@ -29,8 +29,10 @@ int workWithClient( void * socket_ );
 
 int updateLoop( void * data_ ) {
 	float dt = 0;
-	for(;;)
+	for(;;){
 		update(dt);
+		SDL_Delay(10);
+	}
 	return 0;
 }
 
@@ -147,6 +149,6 @@ int main( int argc, char * argv[] ) {
 	SDLNet_TCP_Close(socket);
 	printf("Closed.\n");
 	SDL_Quit();
-	return 0x127;
+	return 0;
 }
 
