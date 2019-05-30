@@ -157,3 +157,6 @@ $RECYCLE.BIN/
 # Intellij folders and files (for CLion)
 *.iml
 .idea/
+
+# Cmake build folder
+cmake-build-debug/

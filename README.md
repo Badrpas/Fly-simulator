@@ -21,3 +21,13 @@ But you better not press other buttons because some of them are crashing client 
 
 #### Warning for explorers
 Do not expect to see a well written code here.
+
+#### To build with CMake
+
+```
+mkdir build && cd build
+cmake ..
+make
+```
+
+P.S. don't forget to copy `images` folder into `Show me image`
