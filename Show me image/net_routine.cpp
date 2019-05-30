@@ -226,7 +226,7 @@ int decodeData ( void* ) {
 							break;
 						}
 						case B_DISCONNECT:{
-							int dc = getFlyByIDi((unsigned char)data);
+							int dc = getFlyByIDi(*((unsigned char*)&data));
 							char pos = otherFlies.size();
 							std::swap( otherFlies[dc], otherFlies.back() );
 							otherFlies.resize( pos - 1 );

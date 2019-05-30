@@ -49,7 +49,7 @@ void update(float dt) {
 						unsigned int id = clients[i]->ID;
 						send ( &clients[i]->socket, B_NEWPLAYERID, &id, sizeof( unsigned int ) );
 						float* pos = (float*) data;
-						(float)pos[3] = (float) clients[i]->ID;
+						pos[3] = (float) clients[i]->ID;
 						printf("New player. ID: %i\n", clients[i]->ID);
 						broadcastExcept( clients[i]->socket, B_NEWPLAYER, data, sizeof(float)*4 );
 						break;

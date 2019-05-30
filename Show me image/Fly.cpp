@@ -68,7 +68,8 @@ void	Fly::Render() {
 	float _x, _y;
 	float _dx, _dy;
 
-	const float H = 64.0f, const W = 64.0f;
+	const float H = 64.0f;
+	const float W = 64.0f;
 	
 	float length = GetZ() - fly->GetZ();
 

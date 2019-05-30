@@ -68,9 +68,9 @@ bool init() {
 	SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE,  8);
 	SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE,   8);
 	SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,  8);
- 
-	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
-	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
+
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  0);
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  0);
 
     screen = SDL_SetVideoMode( 
 		SCREEN_WIDTH, SCREEN_HEIGHT, 
@@ -139,7 +139,7 @@ GLuint loadTexture (char * file,
 bool load_files() {
     image	= load_image( "images/hello.png" );
 	flyImg	= load_image( "images/fly.png" );
-	kover	= load_image( "images/KOVER.jpg" );
+	kover	= load_image( "images/KOVER.JPG" );
 	convToGLTex ( kover, glKoverTexture, GL_RGB, GL_LINEAR, GL_MIRRORED_REPEAT );
 	convToGLTex ( flyImg, glFlyTexture , GL_RGBA );
 	return true;

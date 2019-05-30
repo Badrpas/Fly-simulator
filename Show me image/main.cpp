@@ -50,9 +50,9 @@ int main( int argC, char* argV[] ) {
 	fly  = new Fly			( 550.0f, 324.0f );
 	anim = new BAnimation	( 64, 64, 0.03f );
 	anim->AddFrame ( glFlyTexture );
-	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png", GL_RGBA, GL_LINEAR ) );
-	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly2.png" ) );
-	anim->AddFrame ( loadTexture ( "images/Fly/fly_fly1.png" ) );
+	anim->AddFrame ( loadTexture ( "images/fly/fly_fly1.png", GL_RGBA, GL_LINEAR ) );
+	anim->AddFrame ( loadTexture ( "images/fly/fly_fly2.png" ) );
+	anim->AddFrame ( loadTexture ( "images/fly/fly_fly1.png" ) );
 	fly->SetAnimation		( anim );
 	fly->SetMainPlayerState ( true );
 	fly->SendNewPlayer		();
