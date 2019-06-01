@@ -1,9 +1,14 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+#ifdef __APPLE__
+    #include <stdlib.h>
+    #include <malloc/malloc.h>
+#else
+    #include <stdio.h>
+    #include <malloc.h>
+#endif
 
-#include <stdio.h>
 #include <cstring>
-#include <malloc.h>
 #include <time.h>
 
 #define MAX_SYL	4

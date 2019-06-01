@@ -17,6 +17,18 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
+    - os: osx
+      osx_image: xcode10
+      addons:
+        homebrew:
+          packages:
+            - gcc@7
+            - sdl
+            - sdl_net
+            - sdl_image
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
 before_install:
   - eval "${MATRIX_EVAL}"
 
