@@ -23,7 +23,16 @@ But you better not press other buttons because some of them are crashing client 
 #### Warning for explorers
 Do not expect to see a well written code here.
 
-#### To build with CMake
+## Requirements
+
+### Linux
+#### Ubuntu
+    apt-get install build-essential libsdl-image1.2-dev libsdl-dev libsdl-net1.2 libsdl-net1.2-dev
+    
+### Mac OS
+    brew install cmake gcc sdl sdl_net sdl_image
+
+## Build
 
 ```
 mkdir build && cd build
